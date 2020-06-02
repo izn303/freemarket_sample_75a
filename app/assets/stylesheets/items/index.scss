@@ -419,6 +419,15 @@ body{
                     font-size: 10px;
                     text-align: left;
                   }
+                  .items-box_photo__sold{
+                    z-index:100;
+                    &__inner{
+                      color:red;
+                      letter-spacing: 2px;
+                      font-weight: 600;
+                      text-align: center;
+                    }
+                  }
                 }
               }
             }
