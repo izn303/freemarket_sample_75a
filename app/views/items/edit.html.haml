@@ -1,0 +1,75 @@
+.exhibision
+  .exhibision__top
+    =render "users/logo"
+
+  .exhibision__content
+    = form_with model: @item do |f|
+      .exhibision__content__box
+        .exhibision__content__box__image
+          .exhibision__content__box__image--name
+            出品画像
+            %span 必須
+          %p 最大10枚までアップロードできます
+          #image-box-1
+            .item-num-0#image-box__container
+              = f.fields_for :images do |i|
+                = i.file_field :url, type: 'file', name: "item[images_attributes][][url]", value:"", style: "display:none", id:"img-file"
+                %label{for: "img-file"}
+                  %i.fas.fa-camera
+
+        .exhibision__content__box--item
+          .exhibision__content__box--item--name
+            商品名
+            %span 必須
+          .exhibision__content__box--item--form
+            = f.text_field :name, class:"exhibision__content__box--item--form--input", placeholder: "40字まで"
+          .exhibision__content__box--item--name
+            商品の説明
+            %span 必須
+          .exhibision__content__box--item--text
+            = f.text_area :introduction, class:"exhibision__content__box__item-illustration", placeholder: "商品の説明(必須1,000文字以内)\n(色、素材、重さ、定価、注意点など)\n\n例)2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+        .exhibision__content__box__detail
+          %p 商品詳細
+          .exhibision__content__box__detail--name
+            カテゴリー
+            %span 必須
+          .exhibision__content__box__detail--select
+            = f.collection_select :category_id, @category, :id, :name,{prompt: "選択してください"},{ id: "category_select", class: "exhibision__content__box__detail--select--form"}
+          .exhibision__content__box__detail--brand
+            ブランド
+            %span 任意
+          .exhibision__content__box__detail--form
+            = f.text_field :brand, class:"exhibision__content__box__detail--form--input", placeholder: "例) シャネル"
+          .exhibision__content__box__detail--name
+            商品の状態
+            %span 必須
+          .exhibision__content__box__detail--state
+            = f.collection_select( :item_status_id, ItemStatus.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__detail--status-form"})
+        .exhibision__content__box__shipment
+          .exhibision__content__box__shipment--name
+            配送料の負担
+            %span 必須
+          .exhibision__content__box__shipment--select
+            = f.collection_select( :shipment_fee_id, ShipmentFee.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__shipment-fee-form"})
+          .exhibision__content__box__shipment--name
+            発送元の地域
+            %span 必須
+          .exhibision__content__box__shipment--select
+            = f.collection_select( :shipment_pref_id, ShipmentPref.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__shipment-pref-form"})
+          .exhibision__content__box__shipment--name
+            発送日までの日数
+            %span 必須
+          .exhibision__content__box__shipment--select
+            = f.collection_select( :shipment_date_id, ShipmentDate.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__shipment--date-form"})
+        .exhibision__content__box__price
+          .exhibision__content__box__price--name
+            販売価格
+            %span 必須
+          .exhibision__content__box__price--select
+            ￥
+            = f.number_field :price ,placeholder: "0"
+        .exhibision__content__box__sent  
+          = f.submit "編集する"
+
+
+= render "users/footer"        

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   root 'items#index'
   get "users/signout"
+  get "items/edit"
 
   resources :items do
     collection do
