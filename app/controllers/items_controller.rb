@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
   def new
     if user_signed_in?
-    @category = Category.all.order("ancestry,id").limit(3)
+    @category = Category.all.order("ancestry,id").limit(13)
     @item = Item.new
     @item.images.new
     else
@@ -24,11 +24,13 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @category = Category.all.order("ancestry,id").limit(3)
+    @category = Category.all.order("ancestry,id").limit(13)
     @item = Item.new(item_params)
-    if @item.save!
+    if @item.save
+      flash[:notice] = '出品できました'
       redirect_to root_path
     else
+      flash[:alert] = '出品できませんでした'
       render :new
     end
   end
@@ -51,7 +53,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :introduction, :category_id, :brand, :item_status_id, :shipment_fee_id, :shipment_pref_id, :shipment_date_id, :price, images_attributes: [:url, :_destroy, :id])
+    params.require(:item).permit(:name, :introduction, :category_id, :brand, :item_status_id, :shipment_fee_id, :shipment_pref_id, :shipment_date_id, :price, images_attributes: [:url, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def set_item
