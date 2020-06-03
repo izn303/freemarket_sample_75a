@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:destory]
+  before_action :set_item, only: [:destory, :show, :edit]
 
   def index
     @items = Item.includes(:images)
@@ -46,6 +46,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def destory
     @item.destory
     redirect_to root_path
@@ -60,8 +63,5 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def show
-
-  end
 
 end
