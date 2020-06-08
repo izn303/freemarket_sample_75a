@@ -46,12 +46,8 @@
   }
 
   .buy-profile{
-    margin: 10px auto;
-    padding: 20px 50px;
-    background-color: #fff;
-    width: 700px;
-    display: flex;
-    flex-direction: column;
+    @include buy_content;
+    @include flex_column;
     &__title{
       h3{
         font-weight: bold;
@@ -61,24 +57,13 @@
     &__update{
       margin-left: auto;
       a{
-      text-decoration: none;
-      line-height: 48px;
-      background: #3CCACE;
-      border: none;
-      color: #fff;
-      font-size: 18px;
-      border-radius: 100px;
-      padding: 10px 20px;
-      margin: 30px 0;
+      @include button;
       }
     }
   }
 
   .buy-btn{
-    margin: 10px auto;
-    padding: 20px 50px;
-    background-color: #fff;
-    width: 700px;
+    @include buy_content;
     @include flexbox;
     .buy-button{
     @include button;
