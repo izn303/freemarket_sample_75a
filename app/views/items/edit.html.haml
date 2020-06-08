@@ -25,7 +25,6 @@
                   = image.check_box :_destroy, data: {index: image.index}, class: 'hidden-destroy'
 
               - if @item.persisted?
-                - lastIndex = @item.images.count
                 .js-file_group{data: {index: @item.images.count}}
                   = f.file_field :url, name: "item[images_attributes][#{@item.images.count}][url]", class: 'js-file '
                   %span.js-remove 削除

@@ -1,7 +1,7 @@
 =render "users/logo"
 .exhibision
   .exhibision__content
-    = form_with model: @item do |f|
+    = form_with model: @item, local: true do |f|
       .exhibision__content__box
         .exhibision__content__box__image
           .exhibision__content__box__image--name
@@ -18,10 +18,11 @@
                 .js-file_group{data: {index: image.index}}
                   = image.file_field :url, class: 'js-file '
                   %span.js-remove 削除
+
                 - if @item.persisted?
                   = image.check_box :_destroy, data: {index: image.index}, class: 'hidden-destroy'
+
               - if @item.persisted?
-                - lastIndex = @item.images.count
                 .js-file_group{data: {index: @item.images.count}}
                   = f.file_field :url, name: "item[images_attributes][#{@item.images.count}][url]", class: 'js-file '
                   %span.js-remove 削除
