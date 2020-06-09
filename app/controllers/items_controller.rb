@@ -30,8 +30,8 @@ class ItemsController < ApplicationController
       flash[:notice] = '出品できました'
       redirect_to root_path
     else
-      render action: "new"
       flash[:alert] = '出品できませんでした'
+      render action: "new"
     end
   end
 
@@ -42,8 +42,8 @@ class ItemsController < ApplicationController
       @category_child_array = @item.category.parent.parent.children
       @category_grandchild_array = @item.category.parent.children
     else
-      redirect_to action: "show"
       flash[:alert] = '編集する権限がありません'
+      redirect_to action: "show"
     end
   end
 
@@ -51,8 +51,8 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to root_path, notice: '編集完了しました'
     else
-      redirect_to action: "edit"
       flash[:alert] = '編集できませんでした'
+      redirect_to action: "edit"
     end
   end
   
