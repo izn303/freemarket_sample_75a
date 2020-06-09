@@ -37,6 +37,12 @@
   padding: 10px 20px;
   margin: 30px 0;
 }
+@mixin buy_content{
+  margin: 10px auto;
+  padding: 20px 50px;
+  background-color: #fff;
+  width: 700px;
+}
 
 
 // items

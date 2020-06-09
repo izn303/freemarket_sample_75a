@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :sign_in
+
   def new
     @user = User.new
   end
@@ -9,6 +11,9 @@ class UsersController < ApplicationController
   end
 
   def update
+  end
+
+  def show
   end
 
 
@@ -22,4 +27,12 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :nickname)
   end
+
+  def sign_in
+    unless user_signed_in?
+      redirect_to new_user_session_path
+      flash[:alert] = 'ログインまたはアカウント新規登録をお願いします。'
+    end
+  end
+
 end
