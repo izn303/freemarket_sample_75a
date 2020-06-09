@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
-  get "users/signout"
   get "items/edit"
 
 
@@ -29,7 +28,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:new, :create, :show, :destroy]
+  resources :users, only: [:new, :create, :show, :destroy]do
+    collection do
+      get "signout"
+    end
+  end
 
   resources :cards, only: [:new, :show]do
     collection do
@@ -39,5 +42,9 @@ Rails.application.routes.draw do
       get "menu"
     end
   end
+
+  get '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
+
 
 end
