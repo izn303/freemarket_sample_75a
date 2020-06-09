@@ -13,7 +13,6 @@
       width: 400px;
       display: flex;
       justify-content: space-around;
-      margin-bottom: 50px;
       h1{
         color: red;
       }
@@ -25,7 +24,7 @@
       @include flex_column;
       margin: 10px auto;
       &--title{
-        margin: 10px auto;
+        margin: 50px auto;
       }
 
       &--require{
@@ -45,7 +44,8 @@
         height: 40px;
         margin-bottom: 20px;
         border-radius: 5px;
-        border: solid 1px;
+        border: solid 1px #bbb;
+        padding: 0px 10px;
       }
     }
     &__submit{

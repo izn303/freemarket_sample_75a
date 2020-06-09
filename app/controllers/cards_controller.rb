@@ -6,8 +6,7 @@ class CardsController < ApplicationController
   before_action :payjp_key,only:   [:delete, :show, :pay, :purchase, :buy]
 
   def new
-    if @card.blank?
-    else
+    if @card.present? 
       redirect_to cards_path
     end
   end
@@ -92,7 +91,6 @@ class CardsController < ApplicationController
 
   def set_card
     @card = Cards.find_by(user_id: current_user.id)
-    @card = Cards.where(user_id: current_user.id).first
   end
 
   def set_item

@@ -20,25 +20,21 @@
       width: 400px;
       height: 50px;
       margin: 10px;
+      padding: 0px 10px;
     }
   }
   &__btn{
     margin: 0 auto;
     @include flex_column;
     input{
-      text-decoration: none;
-      line-height: 48px;
-      background: #3CCACE;
-      border: 1px solid #3CCACE;
-      color: #fff;
-      font-size: 18px;
-      border-radius: 100px;
+      @include button;
+      padding: 2px 60px;
+      margin: 10px 0px;
+    }
+    a{
+      @include button;
       padding: 2px 60px;
       margin: 10px 0px;
     }
   }
-
- 
-  
-  
 }

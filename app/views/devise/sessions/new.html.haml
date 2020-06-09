@@ -12,8 +12,8 @@
     .login__btn
       .login__btn--submit
       = f.submit "ログイン"
-      .login__btn--regist
-      = button_to '新規会員登録はこちら', new_user_registration_path, method: :get
+      .login__regist--submit
+      = link_to '新規会員登録はこちら', new_user_registration_path, method: :get
 
 
 = render "users/footer"

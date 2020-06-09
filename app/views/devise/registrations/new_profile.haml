@@ -1,0 +1,101 @@
+=render "users/logo"
+
+= render "devise/shared/error_messages", resource: @profile
+= form_for @profile do |f| 
+  .profile
+    .profile__menu
+      %h1 会員情報
+      %h2 詳細情報
+      %h3 完了
+
+  .profile
+    .profile__form
+      .profile__form--title
+        %h1 会員情報入力
+
+      .profile__form--message
+        %h1 本人確認
+        %h2 安心・安全にご利用いただくために、お客様の本人情報の登録にご協力ください。他のお客様に公開されることはありません。
+
+        
+      .profile__form
+        .profile__form--require
+          %h1 苗字・お名前（全角）
+          %h4 必須
+        .profile__form__name
+          .profile__form__name--first
+            = f.text_field :first_name
+          .profile__form__name--family
+            = f.text_field :family_name
+
+
+        .profile__form--require
+          %h1 苗字・お名前カナ（全角）
+          %h4 必須        
+        .profile__form__name
+          .profile__form__name--first_kana
+            = f.text_field :first_name_kana
+          .profile__form__name--family_kana
+            = f.text_field :family_name_kana
+
+
+        .profile__form--require
+          %h1 生年月日
+          %h4 必須
+        .profile__form--birthday
+          = f.date_select :birthday, {include_blank: true, date_separator:"",start_year:1900, use_month_numbers: true}, {class: 'time-box'}
+      
+
+
+
+        .profile__form--require
+          %h1 郵便番号
+          %h4 必須
+        .profile__form--address
+          = f.text_field :post_number
+
+        .profile__form--require
+          %h1 都道府県
+          %h4 必須
+        .profile__form--address
+          = f.text_field :prefecture
+
+        .profile__form--require
+          %h1 市区町村
+          %h4 必須
+        .profile__form--address
+          = f.text_field :city
+
+        .profile__form--require
+          %h1 番地
+          %h4 必須
+        .profile__form--address
+          = f.text_field :house_number
+
+        .profile__form--require
+          %h1 マンション名・部屋番号
+          %h5 任意
+        .profile__form--address
+          = f.text_field :building_name
+
+        .profile__form--require
+          %h1 電話番号
+          %h5 任意
+        .profile__form--address
+          = f.telephone_field :phone_number
+
+
+        .profile__form--comment
+          %h2 ※本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+         
+
+  .profile
+    .profile__consent
+      %h1 「新規登録」のボタンを押すことにより、利用規約に同意したものとみなします
+    .profile__submit
+      = f.submit "新規登録"
+
+
+
+= render "users/footer"
+

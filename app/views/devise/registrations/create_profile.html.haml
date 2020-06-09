@@ -1,15 +1,19 @@
 =render "users/logo"
 
-.create-profile
-  .regist-menu
+.create
+  .create__menu
     %h1 会員情報
     %h2 詳細情報
     %h3 完了
 
-  .member-regist
-    .member-regist__title
-      %h1 登録完了！
+  .create
+    .create__form
+      .create__form--title
+        %h1 アカウント登録されました。
+        %h2 FURIMAをお楽しみください！
 
-  .regist
-    .regist__require
+  .create
+    .create__submit
       = button_to 'トップへ戻る', root_path, method: :get
+
+= render "users/footer"
