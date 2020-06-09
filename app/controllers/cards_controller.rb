@@ -6,7 +6,7 @@ class CardsController < ApplicationController
   before_action :payjp_key,only:   [:delete, :show, :pay, :purchase, :buy]
 
   def new
-    if @card.present? 
+    if @card.present?
       redirect_to cards_path
     end
   end
