@@ -4,6 +4,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  before_action  :set_card_payjpkey_item, :item_params, only: [:destroy]
+
+
+
+
+
   # GET /resource/sign_up
   def new
     @user = User.new
@@ -55,9 +61,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    if @card.blank?
+    else
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      customer.delete
+      @card.delete
+    end
+    super
+    # if @item.destroy
+    #   redirect_to root_path, notice: '削除が完了しました'
+    # else
+    #   redirect_to root_path, alert: '削除できませんでした'
+    # end
+
+    # redirect_to root_path
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -95,4 +114,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def profile_params
     params.require(:profile).permit(:first_name, :family_name, :first_name_kana, :family_name_kana, :birthday, :post_number, :prefecture, :city, :house_number, :phone_number, :building_name)
   end
+
+  def set_card_payjpkey_item
+    @card = Cards.find_by(user_id: current_user.id)
+    Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
+
+    # @item = Item.find(params[:item_id])
+  end
+
+  def item_params
+    # params.require(:item).permit(:name)
+  end
+
 end
