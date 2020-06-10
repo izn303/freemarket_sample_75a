@@ -3,7 +3,11 @@
   min-width:700px;
   align-items: center;
   font-size: 16px;
+  padding-top: 20px;
   margin-bottom: 120px;
+  background-color: #fff;
+  width: 600px;
+  margin-left: 400px;
 
   .card-title{
     width: 400px;
@@ -16,8 +20,12 @@
     input{
       width: 300px;
       height: 50px;
-      border-radius: 5px;
+      border-radius: 60px;
       margin-bottom: 70px;
+      background: #3CCACE;
+      border: 1px solid #3CCACE;
+      color: #fff;
+      
     }
   }
 }

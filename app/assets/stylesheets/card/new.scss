@@ -3,6 +3,7 @@
   
   .pay{
     margin: 10px auto;
+    background-color: #fff;
     height: 500px;
     &__title{
       margin: 30px auto;
@@ -32,6 +33,7 @@
       }
       &--number{
         margin-bottom: 20px;
+        margin-left: 50px;
         input{
           width: 310px;
           height: 50px;
@@ -39,6 +41,8 @@
       }
       &--exp{
         margin-bottom: 20px;
+        margin-left: 50px;
+      
         label{
           margin-right:100px ;
         }
@@ -49,6 +53,7 @@
       }
       &--cvc{
         margin-bottom: 20px;
+        margin-left: 50px;
         input{
           height: 50px;
         }
