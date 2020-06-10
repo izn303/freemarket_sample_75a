@@ -55,12 +55,18 @@ class CardsController < ApplicationController
 
 
   def purchase  # 購入確認画面へ遷移
-    if @card.blank?
-      redirect_to new_card_path
-      flash[:alert] = 'カードが登録されていません'
+    if @item.buyer_id.present?
+      redirect_to item_path(@item), alert: '申し訳ございません、既に購入されてます'
+    elsif current_user.id == @item.seller_id
+      redirect_to item_path(@item), alert: '購入できません'
     else
-      customer = Payjp::Customer.retrieve(@card.customer_id) 
-      @default_card_information = customer.cards.retrieve(@card.card_id)
+      if @card.blank?
+        redirect_to new_card_path
+        flash[:alert] = 'カードが登録されていません'
+      else
+        customer = Payjp::Customer.retrieve(@card.customer_id) 
+        @default_card_information = customer.cards.retrieve(@card.card_id)
+      end
     end
   end
 
