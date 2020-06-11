@@ -7,6 +7,5 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :email, uniqueness: true
   has_one :profile, dependent: :destroy
-  # has_many :items, dependent: :delete_all
 
 end

@@ -3,17 +3,17 @@
   min-width:700px;
   align-items: center;
   font-size: 16px;
-  padding-top: 20px;
-  margin-bottom: 120px;
+  padding: 50px;
   background-color: #fff;
   width: 600px;
-  margin-left: 300px;
+  margin:160px auto;
 
   .card-title{
     width: 400px;
     display: flex;
     justify-content: space-around;
     margin-bottom: 50px;
+    font-size: 20px;
   }
 
   .card-menu{

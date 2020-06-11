@@ -1,21 +1,25 @@
 .card-show{
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  margin: 50px auto;
-  background-color:#fff;
+  @include flex_column;
+  min-width:700px;
+  align-items: center;
+  font-size: 16px;
+  padding: 40px;
+  background-color: #fff;
+  width: 600px;
+  margin:160px auto;
+  // height: 300px;
+  h1{
+      font-size: 30px;
+      text-align: center;
+      margin: 20px 0px;
+    }
+  h2{
+    margin-bottom: 40px;
+    font-size: 16px;
+  }
+
 }
 
-h1{
-  font-size: 30px;
-  text-align: center;
-}
-
-.pay__edit {
-  width: 400px;
-  justify-content: space-around;
-  margin-bottom: 50px;
-}
 
 .card_id{
   text-decoration: none;
