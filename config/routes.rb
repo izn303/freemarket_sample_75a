@@ -9,10 +9,43 @@ Rails.application.routes.draw do
   end
   
   root 'items#index'
-  get "users/signout"
-  
-  resources :items, only: [:index, :new, :create, :show, :destroy, :edit, :update]
-  resources :users, only: [:new, :create, :show, :destroy]
-  resources :cards, only: [:new, :edit, :show, :destroy, :pay]
-  
+  get "items/edit"
+
+
+  resources :items do
+    collection do
+      get 'category_children', defaults: { format: 'json'}
+      get 'category_grandchildren', defaults: { format: 'json'}
+    end
+    resources :image
+
+    resources :cards, only: :purchase do
+      collection do
+        get "purchase"
+        post "buy"
+        get "done"
+      end
+    end
+  end
+
+  resources :users, only: [:new, :create, :show, :destroy]do
+    collection do
+      get "signout"
+      delete 'destroy_all'
+    end
+  end
+
+  resources :cards, only: [:new, :show]do
+    collection do
+      post 'pay', to: 'cards#pay'
+      post 'delete', to: 'cards#delete'
+      get "show"
+      get "menu"
+    end
+  end
+
+  get '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
+
+
 end
