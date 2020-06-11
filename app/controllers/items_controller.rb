@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
       flash[:notice] = '出品できました'
       redirect_to root_path
     else
+      @item.images.new
       flash[:alert] = '出品できませんでした'
       render action: "new"
     end
