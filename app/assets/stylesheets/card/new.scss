@@ -1,16 +1,18 @@
 .card-new{
   @include flex_column;
+  margin: 100px 0px;
   
   .pay{
     margin: 10px auto;
     background-color: #fff;
     height: 500px;
+    width: 600px;
     &__title{
-      margin: 30px auto;
+      margin: 50px auto;
       width: 200px;
       h1{
-        margin: 0 auto;
-        font-size: 40px;
+        text-align: center;
+        font-size: 30px;
       }
     }
     &__edit{
@@ -24,6 +26,9 @@
     }
 
     &__form{
+      display: flex;
+      justify-content: left;
+      padding: 0px 70px;
       .inputForm{
       margin-bottom: 20px;
       }
@@ -33,7 +38,6 @@
       }
       &--number{
         margin-bottom: 20px;
-        margin-left: 50px;
         input{
           width: 310px;
           height: 50px;
@@ -41,10 +45,10 @@
       }
       &--exp{
         margin-bottom: 20px;
-        margin-left: 50px;
+        // margin-left: 50px;
       
         label{
-          margin-right:100px ;
+          // margin-right:100px ;
         }
         select{
           height: 50px;
@@ -53,7 +57,7 @@
       }
       &--cvc{
         margin-bottom: 20px;
-        margin-left: 50px;
+        // margin-left: 50px;
         input{
           height: 50px;
         }
