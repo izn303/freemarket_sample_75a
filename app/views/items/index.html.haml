@@ -8,11 +8,11 @@
         %form{"accept-charset": "UTF-8", action: "#", method: "get"}
           %input{name: "utf8", type: "hidden", value: "✓"}/
           %input{name: "key", placeholder: "キーワードから探す"}
-          %button{type: "submit"} 
+          %button{type: "submit"}
             = image_tag 'material/icon/icon-search 1.png', class: "search-form__icon"
           %input{name: "authenticity_token", type: "hidden", value: ""}
       %ul.resultLists
-    .lists     
+    .lists
       %ul.lists__left
         %li.lists__left__first-item
           = link_to "#" do
@@ -24,7 +24,7 @@
         - if user_signed_in?
           
           %li.lists__right__item-new
-            = link_to "マイページ", "users/show"
+            = link_to "#{current_user[:nickname]}のマイページ", "users/show"
 
         - else  
           %li.lists__right__item-login
@@ -80,7 +80,7 @@
           %span 業界最安
         %p.reason__lists__list__description
           最大3%でお得に出品&amp;購入！
-  
+
   .middle
     .middle__inner
       %h2.middle__inner__subtitle 会員数日本一位
@@ -95,14 +95,14 @@
           = image_tag 'apple.png'
         = link_to "#" do
           = image_tag 'google.png'
-  
+
   .features
     %h2.features__head FURIMAの特徴
     .features__items
       .features__items__item
         .features__items__item--img
           = image_tag 'material/icon/icon-01.png'
-        %h3.features__items__item__subtitle 
+        %h3.features__items__item__subtitle
           簡単に売り買いできる
         %p.features__items__item__detail
           スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
@@ -118,7 +118,7 @@
         %h3.features__items__item__subtitle 様々な支払いに対応
         %p.features__items__item__detail
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
-  
+
   .pickup
     %h2.pickup__head ピックアップカテゴリー
     .pickup__products
@@ -126,45 +126,28 @@
         = link_to "/items/new" do
           %h3.title 新規投稿商品
       .product-lists
-        .product-list
-          = link_to "#" do
-            .product-list-img
-              = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png'
-            .product-list-body
-              %h3.name product3
-              .details
-                %ul
-                  %li 30000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
-        .product-list
-          = link_to "#" do
-            .product-list-img
-              = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
-            .product-list-body
-              %h3.name product2
-              .details
-                %ul
-                  %li 20000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
-        .product-list
-          = link_to "#" do
-            .product-list-img
-              = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
-            .product-list-body
-              %h3.name product1
-              .details
-                %ul
-                  %li 10000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
+        - @items.each do |item|
+          .product-list
+            = link_to item_path(item) do
+              .product-list-img
+                = image_tag item.images.first.url.url
+              .product-list-body
+                %h3.name 
+                  = item.name
+                .details
+                  %ul
+                    %li
+                      = item.price.to_s(:delimited)
+                      = "円"
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+                  -if item.buyer_id.present? 
+                    .items-box_photo__sold
+                      .items-box_photo__sold__inner
+                        SOLD
+                  
   .pickup
     %h2.pickup__head ピックアップブランド
     .pickup__products
@@ -172,45 +155,27 @@
         = link_to "#" do
           %h3.title アーカイバ
       .product-lists
-        .product-list
-          = link_to "#" do
-            .product-list-img
-              = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
-            .product-list-body
-              %h3.name product3
-              .details
-                %ul
-                  %li 30000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
-        .product-list
-          = link_to "#" do
-            .product-list-img
-              = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
-            .product-list-body
-              %h3.name product2
-              .details
-                %ul
-                  %li 20000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
-        .product-list
-          = link_to "#" do
-            .product-list-img
-              = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
-            .product-list-body
-              %h3.name product1
-              .details
-                %ul
-                  %li 10000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
+        - @items.each do |item|
+          .product-list
+            = link_to item_path(item) do
+              .product-list-img
+                = image_tag item.images.first.url.url
+              .product-list-body
+                %h3.name
+                  = item.name
+                .details
+                  %ul
+                    %li 
+                      = item.price.to_s(:delimited)
+                      = "円"
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
+                  -if item.buyer_id.present? 
+                    .items-box_photo__sold
+                      .items-box_photo__sold__inner
+                        SOLD
 .banner
   .inner
     %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
@@ -220,49 +185,9 @@
         = image_tag 'apple.png'
       = link_to "#" do
         = image_tag 'google.png'
-.footer
-  %ul.contents
-    %li.content
-      %h2.content__head FURIMAについて
-      %ul
-        %li
-          = link_to "#" do
-            会社概要（運営会社）
-        %li
-          = link_to "#" do
-            プライバシーポリシー
-        %li
-          = link_to "#" do
-            FURIMA利用規約
-        %li
-          = link_to "#" do
-            ポイントに関する特約
-    %li.content
-      %h2.content__head FURIMAを見る
-      %ul
-        %li
-          = link_to "#" do
-            カテゴリー一覧
-        %li
-          = link_to "#" do
-            ブランド一覧
-    %li.content
-      %h2.content__head ヘルプ＆ガイド
-      %ul
-        %li
-          = link_to "#" do
-            FURIMAガイド
-        %li
-          = link_to "#" do
-            FURIMAロゴ利用ガイドライン
-        %li
-          = link_to "#" do
-            お知らせ
-  .footer__logo
-    = link_to "/" do
-      = image_tag 'logo-white.png'
-  %p © FURIMA
-= link_to "/items/new" do
+
+= render "users/footer"
+= link_to new_item_path do
   .purchase
     %span.purchase__text 出品する
     = image_tag 'material/icon/icon_camera.png', class: "purchase__icon"

@@ -1,0 +1,31 @@
+.card{
+  @include flex_column;
+  min-width:700px;
+  align-items: center;
+  font-size: 16px;
+  padding: 50px;
+  background-color: #fff;
+  width: 600px;
+  margin:160px auto;
+
+  .card-title{
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+    font-size: 20px;
+  }
+
+  .card-menu{
+    input{
+      width: 300px;
+      height: 50px;
+      border-radius: 60px;
+      margin-bottom: 70px;
+      background: #3CCACE;
+      border: 1px solid #3CCACE;
+      color: #fff;
+      
+    }
+  }
+}

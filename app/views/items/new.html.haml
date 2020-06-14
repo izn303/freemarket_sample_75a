@@ -1,20 +1,31 @@
+=render "users/logo"
 .exhibision
-  .exhibision__top
-    = link_to root_path do
-      = image_tag 'material/logo/logo.png'
   .exhibision__content
-    = form_with model: @item do |f|
+    = form_with model: @item, local: true do |f|
       .exhibision__content__box
-        .exhibision__content__box__iamge
-          .exhibision__content__box__iamge--name
+        .exhibision__content__box__image
+          .exhibision__content__box__image--name
             出品画像
             %span 必須
-          .exhibision__content__box__iamge--form
-            = f.fields_for :iamges do |i|
-              .form-area
-                = i.file_field :iamge, type: 'file',name: "", value:"",style:"display:none", id:"image-file"
-                %label{for: "image-file"}
-                  %i.fas.fa-camera
+          %p 最大10枚までアップロードできます
+          #image-box
+            #previews
+              - if @item.persisted?
+                - @item.images.each_with_index do |image, i|
+                  = image_tag image.url.url, data: {index: i}, width: '100', height: '100'
+            #file-box
+              = f.fields_for :images do |image|
+                .js-file_group{data: {index: image.index}}
+                  = image.file_field :url, class: 'js-file '
+                  %span.js-remove 削除
+
+                - if @item.persisted?
+                  = image.check_box :_destroy, data: {index: image.index}, class: 'hidden-destroy'
+
+              - if @item.persisted?
+                .js-file_group{data: {index: @item.images.count}}
+                  = f.file_field :url, name: "item[images_attributes][#{@item.images.count}][url]", class: 'js-file '
+                  %span.js-remove 削除
         .exhibision__content__box--item
           .exhibision__content__box--item--name
             商品名
@@ -32,40 +43,42 @@
             カテゴリー
             %span 必須
           .exhibision__content__box__detail--select
-            = f.collection_select :category_id, Category.all, :id, :name, {prompt:"選択してください"}, {class:"exhibision__content__box__detail--status-form"}
+            = f.collection_select :category_id, @category, :id, :name,{prompt: "選択してください"},{ id: "category_select", class: "exhibision__content__box__detail--select--form"}
           .exhibision__content__box__detail--brand
             ブランド
             %span 任意
           .exhibision__content__box__detail--form
-            = f.text_field :name, class:"exhibision__content__box__detail--form--input", placeholder: "例) シャネル"
+            = f.text_field :brand, class:"exhibision__content__box__detail--form--input", placeholder: "例) シャネル"
           .exhibision__content__box__detail--name
             商品の状態
             %span 必須
-          .exhibision__content__box__detail--select
-            = f.select :itemstatus, ['新品、未使用', '未使用に近い', '目立った傷や汚れ無し', 'やや傷や汚れあり', '汚れや傷あり', '全体的に状態が悪い'], prompt:"選択してください",class:"exhibision__content__box__detail--status-form"
+          .exhibision__content__box__detail--state
+            = f.collection_select( :item_status_id, ItemStatus.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__detail--status-form"})
         .exhibision__content__box__shipment
           .exhibision__content__box__shipment--name
             配送料の負担
             %span 必須
           .exhibision__content__box__shipment--select
-            = f.select :shipment_fee, ['送料込み(出品者負担)', '着払い（購入者負担）'], prompt:"選択してください",class:"exhibision__content__box__shipment-fee-form"
+            = f.collection_select( :shipment_fee_id, ShipmentFee.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__shipment-fee-form"})
           .exhibision__content__box__shipment--name
             発送元の地域
             %span 必須
           .exhibision__content__box__shipment--select
-            = f.select :shipment_pref, ['北海道', '青森', '岩手', '宮城', '秋田', '山形', '福島', '茨城', '栃木', '群馬', '埼玉', '千葉', '東京', '神奈川', '新潟', '富山', '石川', '福井', '山梨', '長野', '岐阜', '静岡', '愛知', '三重', '滋賀', '京都', '大阪', '兵庫', '奈良', '和歌山', '島根', '鳥取','岡山','広島','山口','徳島','香川','愛媛','高知','福岡','佐賀','長崎','大分','熊本','宮崎','鹿児島','沖縄'], prompt:"選択してください",class:"exhibision__content__box__shipment-pref-form"
+            = f.collection_select( :shipment_pref_id, ShipmentPref.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__shipment-pref-form"})
           .exhibision__content__box__shipment--name
             発送日までの日数
             %span 必須
           .exhibision__content__box__shipment--select
-            = f.select :itemstatus, ['１〜２日で発送', '２〜３日で発送', '４〜７日で発送'], prompt:"選択してください",class:"exhibision__content__box__shipment--date-form"
+            = f.collection_select( :shipment_date_id, ShipmentDate.all, :id, :name, {prompt: "選択してください"}, {class: "exhibision__content__box__shipment--date-form"})
         .exhibision__content__box__price
           .exhibision__content__box__price--name
             販売価格
             %span 必須
           .exhibision__content__box__price--select
             ￥
-            = f.number_field :price_id ,placeholder: "0"
+            = f.number_field :price ,placeholder: "0"
         .exhibision__content__box__sent  
           = f.submit "出品する"
-        
+
+
+= render "users/footer"        

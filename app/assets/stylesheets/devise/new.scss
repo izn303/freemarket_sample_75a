@@ -1,18 +1,18 @@
-.new{
-  @include flexbox;
-  overflow: scroll;
-  width: 100%;
-  align-items: center;
-  font-size: 16px;
-  background-color: #ffffff;
-  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+.regist{
+  @include flex_column;
+  justify-content: center;
+  width: 600px;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-bottom: 50px;
 
   .regist{
-    .regist-menu{
+    &__menu{
+      @include flexbox;
+      margin: 20px auto;
       width: 400px;
       display: flex;
       justify-content: space-around;
-      margin-bottom: 50px;
       h1{
         color: red;
       }
@@ -20,18 +20,14 @@
         width: 64px;
       }
     }
+    &__form{
+      @include flex_column;
+      margin: 10px auto;
+      &--title{
+        margin: 50px auto;
+      }
 
-    .member-regist{
-      text-align: center;
-      padding: 20px;
-      font-size: 20px;
-    }
-
-    .regist{
-      align-items: center;
-      width: 300px;
-      white-space: normal;
-      &__require{
+      &--require{
         display: flex;
         justify-content: start;
         h4{
@@ -43,19 +39,28 @@
           @include required;
         }
       }
-
       input{
         width: 400px;
         height: 40px;
         margin-bottom: 20px;
         border-radius: 5px;
-        }
-
-      .submit{
+        border: solid 1px #bbb;
+        padding: 0px 10px;
+      }
+    }
+    &__submit{
+      @include flex_column;
+      margin: 10px auto;
+      input{
         width: 300px;
-        height: 50px;
-        border-radius: 1px;
-        margin-bottom: 100px;
+        text-decoration: none;
+        line-height: 48px;
+        background: #3CCACE;
+        border: 1px solid #3CCACE;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 100px;
+        margin: 30px 0px;
       }
     }
   }

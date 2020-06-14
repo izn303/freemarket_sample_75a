@@ -1,18 +1,20 @@
 =render "users/logo"
 
-.session
-  .new
-    .login
-      .new-regist
-      = button_to '新規会員登録はこちら', new_user_registration_path, method: :get
-      
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .login__email
-          %h1 メールアドレス
-          = f.email_field :email
-        .login__password
-          %h1 password
-          = f.password_field :password
-        .login__btn
-          = f.submit "ログイン"
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .login 
+    .login__form
+      %h1 ログイン
+      .login__form--email
+      = f.email_field :email,placeholder: "E-MAIL"
+      .login__form--pass
+      = f.password_field :password,placeholder: "PASSWORD"
+        
+    .login__btn
+      .login__btn--submit
+      = f.submit "ログイン"
+      .login__regist--submit
+      = link_to '新規会員登録はこちら', new_user_registration_path, method: :get
+
+
+= render "users/footer"
     

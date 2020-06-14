@@ -1,0 +1,75 @@
+.buy{
+  @include flex_column;
+  margin: 50px auto;
+  background-color:#f8f8f8;
+
+  .buy-item{
+    @include flex_colum_mar;
+    padding: 20px;
+    background-color: #fff;
+    width: 700px;
+    
+    &__title{
+      align-items: center;
+      font-size: 40px;
+      margin: 20px auto;
+    }
+    &__image{
+      margin: 0 auto;
+    }
+    &__name{
+      font-size: 30px;
+      margin: 10px auto;
+    }
+    &__price{
+      margin: 0 auto;
+    }
+  }
+
+  .buy-card{
+    @include flex_colum_mar;
+    padding: 20px 50px;
+    background-color: #fff;
+    width: 700px;
+    &__title{
+      h3{
+      font-weight: bold;
+      margin-bottom: 20px;
+      }
+    }
+    &__update{
+      margin-left: auto;
+      a{
+      @include button;
+      }
+    }
+  }
+
+  .buy-profile{
+    @include buy_content;
+    @include flex_column;
+    &__title{
+      h3{
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+    }
+    &__update{
+      margin-left: auto;
+      a{
+      @include button;
+      }
+    }
+  }
+
+  .buy-btn{
+    @include buy_content;
+    @include flexbox;
+    .buy-button{
+    @include button;
+    padding: 5px 120px;
+    margin: 30px 0;
+    }
+  }
+
+}

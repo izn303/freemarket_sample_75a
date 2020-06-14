@@ -4,6 +4,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  before_action  :set_card_payjpkey_item, :item_params, only: [:destroy]
+
+
+
+
+
   # GET /resource/sign_up
   def new
     @user = User.new
@@ -115,7 +121,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @card = Cards.find_by(user_id: current_user.id)
     Payjp.api_key = Rails.application.credentials[:PAYJP_PRIVATE_KEY]
 
-    # @item = Items.find_by(seller_id: current_user.id)
+    # @item = Item.find(params[:item_id])
+  end
+
+  def item_params
+    # params.require(:item).permit(:name)
   end
 
 end

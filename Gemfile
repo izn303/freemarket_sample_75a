@@ -48,6 +48,8 @@ group :development, :test do
   gem 'capistrano-rails-console'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+
 end
 
 group :development do
@@ -78,8 +80,11 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'font-awesome-sass'
 gem 'devise'
+gem 'jquery-rails'
+gem 'ancestry'
+gem 'active_hash'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'erb2haml'
 gem 'payjp'
-gem "jquery-rails"
+gem 'fog-aws'

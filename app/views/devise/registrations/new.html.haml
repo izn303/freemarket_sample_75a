@@ -1,51 +1,51 @@
 =render "users/logo"
 
-.new
+
+= form_for(@user, url: user_registration_path) do |f|
   .regist
-    .regist-menu
+    .regist__menu
       %h1 会員情報
       %h2 詳細情報
       %h3 完了
-
-    = render "devise/shared/error_messages", resource: @user
-    
-    .member-regist
-      .member-regist__title
+        
+  .regist
+    .regist__form
+      .regist__form--title
         %h1 会員情報入力
 
-    .regist
-      = form_for(@user, url: user_registration_path) do |f|
-        .regist__require
-          = f.label "ニックネーム"
-          %h4 必須
-        .regist__nickname
-          = f.text_field :nickname
+      .regist__form--require
+        = f.label "ニックネーム"
+        %h4 必須
+      .regist__form--nickname
+        = f.text_field :nickname
 
-        .regist__require
-          = f.label "メールアドレス"
-          %h4 必須
-        .regist__email
-          = f.email_field :email, autocomplete: "email"
+      .regist__form--require
+        = f.label "メールアドレス"
+        %h4 必須
+      .regist__form--email
+        = f.email_field :email, autocomplete: "email"
 
-        .regist__require
-          = f.label "パスワード"
-          %h4 必須
-          - if @minimum_password_length
-            %em
-              (#{@minimum_password_length} 文字以上)
-          %br/
-        .regist__password
-          = f.password_field :password, autocomplete: "new-password"
+      .regist__form--require
+        = f.label "パスワード"
+        %h4 必須
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} 文字以上)
+        %br/
+      .regist__form--password
+        = f.password_field :password, autocomplete: "new-password"
 
-        .regist__require
-          = f.label "確認用パスワード"
-          %h4 必須
-        .regist__password-confirmation
-          = f.password_field :password_confirmation, autocomplete: "new-password"
+      .regist__form--require
+        = f.label "確認用パスワード"
+        %h4 必須
+      .regist__form--password-confirmation
+        = f.password_field :password_confirmation, autocomplete: "new-password"
 
-        .new-regist__submit
-          = f.submit "次へ"
-          = render "devise/shared/links"
+    .regist__submit
+      = f.submit "次へ"
+
+
+= render "users/footer"
 
 
 

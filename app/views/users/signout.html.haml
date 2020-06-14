@@ -1,10 +1,10 @@
 =render "users/logo"
 
 .signout
-  .member-regist
-    .member-regist__title
-      %h1 ログアウトしますか？
+  .signout__title
+    %h1 ログアウトしますか？
 
-  .regist
-    .regist__require
-      = button_to 'ログアウト', destroy_user_session_path, method: :delete
+  .signout__btn
+    = button_to 'ログアウト', destroy_user_session_path, method: :delete
+
+= render "users/footer"

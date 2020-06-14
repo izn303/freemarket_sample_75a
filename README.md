@@ -26,7 +26,7 @@
 |column|Type|Option|
 |------|----|------|
 |nickname|string|null: false|
-|e-mail|string|null: false,unique: true, index:true|
+|email|string|null: false,unique: true, index:true|
 |password|string|null: false, length:{minimu:6}|
 |password_conform|string|null:false|
 ### Association
@@ -75,18 +75,17 @@
 |shipment_date|string|null: false|
 |shipment_pref|string|null: false|
 |category|reference|null: false, foreign_key: true|
-|brand|string|null: false|
+|brand|string||
 |item_status|string|null: false|
 |shipment_fee|string|null: false|
 |seller|reference|null: false, foreign_key: true|
 |buyer|reference|foreign_key: true|
-|prefecture|string|null: false|
 ### Association
 - belongs_to : user
 - belongs_to : category
 - had_many: item_imgs, dependent::destroy
 
-## item-imageテーブルテーブル
+## imageテーブルテーブル
 |column|Type|Option|
 |------|----|------|
 |url|string|null:false|
@@ -101,3 +100,4 @@
 |ancestry|string|null:false|
 ### Association
 - has_many: items
+

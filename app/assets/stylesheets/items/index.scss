@@ -343,10 +343,11 @@ body{
           }
         }
         .product-lists{
-          width: 780px;
+          width: 100%;
           margin: 26px auto;
           display: flex;
           justify-content: space-around;
+          overflow: scroll;
           .product-list{
             width: 220px;
             display: inline-block;
@@ -418,6 +419,15 @@ body{
                   p{
                     font-size: 10px;
                     text-align: left;
+                  }
+                  .items-box_photo__sold{
+                    z-index:100;
+                    &__inner{
+                      color:red;
+                      letter-spacing: 2px;
+                      font-weight: 600;
+                      text-align: center;
+                    }
                   }
                 }
               }

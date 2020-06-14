@@ -3,6 +3,9 @@
   width: 100vw;
   height: 150px;
   align-items: center;
+  background-color: #fff;
+  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.1));
+  margin-bottom: 50px;
   &__box{
     @include flexbox;
     &--image{

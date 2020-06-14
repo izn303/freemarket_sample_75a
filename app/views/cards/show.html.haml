@@ -1,11 +1,26 @@
+
 =render "users/logo"
 
-.card
-  .card-title
-    %h1 登録クレジットカード情報
+.card-show
+  .pay
+    .pay__show
+      %h1 登録情報
+      %h2 以下のクレジットカードが登録されています。
 
-  .card-menu
-    .card__regist
-      = button_to '登録する', new_card_path, method: :get
-    .card__edit
-      = button_to '変更する', "#", method: :get
+    .pay__form
+      .pay__form--number
+        = "**** **** **** " + @customer_card.last4
+
+      .pay__form--exp
+        - exp_month = @customer_card.exp_month.to_s
+        - exp_year = @customer_card.exp_year.to_s.slice(2,3)
+        = exp_month + " / " + exp_year
+        
+    .pay__btn
+      = form_tag(delete_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
+        %button{type: "submit", class: "card_id", value: "" }削除する
+        
+
+
+
+= render "users/footer"

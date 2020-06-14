@@ -1,0 +1,13 @@
+=render "users/logo"
+
+.card
+  .card-title
+    %h1 クレジットカード情報
+
+  .card-menu
+    .card__regist
+      = button_to '登録・削除', new_card_path, method: :get
+
+
+= render "users/footer"
+
